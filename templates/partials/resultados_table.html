@@ -1,0 +1,41 @@
+<div class="table-responsive">
+    <table class="table table-bordered stats-table align-middle">
+        <thead>
+            <tr>
+                <th rowspan="2">Capacidad asociada / Criterio de evaluacion</th>
+                <th rowspan="2">Total</th>
+                {% for level in stats.levels %}
+                <th colspan="2" class="text-center level-head level-{{ level|lower }}">{{ level }}<br><small>{{ stats.level_labels[level] }}</small></th>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for level in stats.levels %}
+                <th>N.</th><th>%</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for criterio in stats.criterios %}
+            <tr>
+                <td>
+                    <small><strong>Capacidad:</strong> {{ criterio.capacidad_nombre }}</small><br>
+                    <strong>Criterio {{ loop.index }}:</strong> {{ criterio.descripcion }}
+                </td>
+                <td>{{ criterio.total }}</td>
+                {% for level in stats.levels %}
+                <td>{{ criterio.counts[level] }}</td>
+                <td>{{ criterio.percentages[level] }}%</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            <tr class="fw-bold table-light">
+                <td>Total general</td>
+                <td>{{ stats.general_total }}</td>
+                {% for level in stats.levels %}
+                <td>{{ stats.general_counts[level] }}</td>
+                <td>{{ stats.general_percentages[level] }}%</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</div>

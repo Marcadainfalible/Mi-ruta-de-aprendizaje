@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Catálogo CNEB · Mi Ruta de Aprendizaje{% endblock %}
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Administración</p>
+        <h1>Catálogo CNEB</h1>
+    </div>
+</div>
+{% for item in catalogo %}
+<section class="section-block">
+    <h2 class="h5">{{ item.area.nombre }} - {{ item.area.ciclo }} - {{ item.area.tipo }}</h2>
+    {% for comp in item.competencias %}
+    <div class="catalog-block">
+        <strong>{{ comp.competencia.nombre }}</strong>
+        <span class="badge text-bg-light">Ciclo {{ comp.competencia.ciclo }}</span>
+        <ul>
+            {% for capacidad in comp.capacidades %}
+            <li>{{ capacidad.nombre }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</section>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Evaluar · Mi Ruta de Aprendizaje{% endblock %}
+{% block content %}
+{% include "partials/ficha_steps.html" %}
+{% if not estudiantes or not criterios %}
+<div class="alert alert-warning">
+    Registra al menos un estudiante y un criterio antes de evaluar.
+</div>
+{% endif %}
+<form method="post" class="section-block">
+    <div class="section-title">
+        <h2>Matriz de evaluación</h2>
+        <span class="badge text-bg-light">AD · A · B · C</span>
+    </div>
+    <div class="evaluation-matrix">
+        <table class="table table-bordered align-middle">
+            <thead>
+                <tr>
+                    <th class="sticky-col">Estudiante</th>
+                    {% for criterio in criterios %}
+                    <th>
+                        <small class="text-muted d-block">{{ criterio.capacidad_nombre }}</small>
+                        {{ criterio.descripcion }}
+                    </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for estudiante in estudiantes %}
+                <tr>
+                    <th class="sticky-col">{{ estudiante.nombre }}</th>
+                    {% for criterio in criterios %}
+                    {% set saved = resultados.get(estudiante.id ~ "-" ~ criterio.id) %}
+                    <td class="matrix-cell">
+                        <div class="level-options">
+                            {% for level in levels %}
+                            <label class="level-chip level-{{ level|lower }}">
+                                <input type="radio" name="nivel_{{ estudiante.id }}_{{ criterio.id }}" value="{{ level }}" {% if saved and saved.nivel == level %}checked{% endif %}>
+                                {{ level }}
+                            </label>
+                            {% endfor %}
+                        </div>
+                        <textarea class="form-control form-control-sm mt-2" name="evidencia_{{ estudiante.id }}_{{ criterio.id }}" rows="2" placeholder="Evidencia u observación">{{ saved.evidencia if saved else "" }}</textarea>
+                    </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row g-3 mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Observaciones generales</label>
+            <textarea class="form-control" name="observaciones_generales" rows="4">{{ ficha.observaciones_generales or "" }}</textarea>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Acciones o sugerencias pedagógicas</label>
+            <textarea class="form-control" name="acciones_pedagogicas" rows="4">{{ ficha.acciones_pedagogicas or "" }}</textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit" {% if not estudiantes or not criterios %}disabled{% endif %}>Guardar evaluación</button>
+    </div>
+</form>
+{% endblock %}

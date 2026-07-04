@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Docentes · Mi Ruta de Aprendizaje{% endblock %}
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Administración</p>
+        <h1>Docentes</h1>
+    </div>
+</div>
+<section class="section-block">
+    <form method="post" class="row g-2 mb-4">
+        <div class="col-md-4"><input class="form-control" name="nombre" placeholder="Nombre completo" required></div>
+        <div class="col-md-4"><input class="form-control" type="email" name="email" placeholder="Correo" required></div>
+        <div class="col-md-3"><input class="form-control" type="password" name="password" placeholder="Contraseña" required></div>
+        <div class="col-md-1 d-grid"><button class="btn btn-primary" type="submit">+</button></div>
+    </form>
+    <table class="table align-middle">
+        <thead><tr><th>Nombre</th><th>Correo</th><th>Estado</th></tr></thead>
+        <tbody>
+        {% for docente in docentes %}
+        <tr><td>{{ docente.nombre }}</td><td>{{ docente.email }}</td><td>{{ "Activo" if docente.activo else "Inactivo" }}</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

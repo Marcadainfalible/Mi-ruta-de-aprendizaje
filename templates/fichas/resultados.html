@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Resultados · Mi Ruta de Aprendizaje{% endblock %}
+{% block content %}
+{% include "partials/ficha_steps.html" %}
+<section class="section-block">
+    <div class="section-title">
+        <h2>Resumen general</h2>
+        <div class="btn-group">
+            <a class="btn btn-sm btn-outline-secondary" target="_blank" href="{{ url_for('main.imprimir_ficha', ficha_id=ficha.id) }}">Imprimir ficha</a>
+            <a class="btn btn-sm btn-outline-secondary" target="_blank" href="{{ url_for('main.imprimir_reporte', ficha_id=ficha.id) }}">Imprimir reporte</a>
+            <a class="btn btn-sm btn-outline-primary" href="#perfil-individual">Perfil individual</a>
+        </div>
+    </div>
+    {% include "partials/resultados_table.html" %}
+</section>
+
+<section class="results-grid">
+    <div class="chart-panel wide"><canvas id="stackedChart"></canvas></div>
+    <div class="chart-panel"><canvas id="barChart"></canvas></div>
+    <div class="chart-panel"><canvas id="pieChart"></canvas></div>
+    <div class="chart-panel wide line-chart-panel">
+        <div class="line-chart-box"><canvas id="lineChart"></canvas></div>
+        <div id="lineCriteriaLegend" class="criteria-legend"></div>
+    </div>
+</section>
+
+<section id="perfil-individual" class="section-block individual-profile-section">
+    <div class="section-title">
+        <div>
+            <h2>Perfil individual por estudiante</h2>
+            <p class="text-muted mb-0">Selecciona un estudiante para ver su avance por criterio.</p>
+        </div>
+        <div class="student-profile-control">
+            <label class="form-label mb-1" for="studentProfileSelect">Seleccionar estudiante</label>
+            <select class="form-select" id="studentProfileSelect">
+                {% for estudiante in stats.individual_profiles.students %}
+                <option value="{{ estudiante.id }}">{{ estudiante.numero }} - {{ estudiante.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    {% if stats.individual_profiles.students %}
+    <h3 id="studentProfileTitle" class="profile-chart-title">Perfil de logro</h3>
+    <div class="student-profile-chart-box">
+        <canvas id="studentProfileChart"></canvas>
+    </div>
+    <div id="studentCriteriaLegend" class="criteria-legend individual-criteria-legend"></div>
+    {% else %}
+    <p class="text-muted mb-0">No hay estudiantes registrados para esta ficha.</p>
+    {% endif %}
+</section>
+
+<form method="post" class="section-block mt-4">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Análisis e interpretación</label>
+            <textarea class="form-control" name="analisis_interpretacion" rows="5">{{ ficha.analisis_interpretacion or "" }}</textarea>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Acciones o sugerencias pedagógicas</label>
+            <textarea class="form-control" name="acciones_pedagogicas" rows="5">{{ ficha.acciones_pedagogicas or "" }}</textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Guardar análisis</button>
+    </div>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+window.chartStats = {{ stats|tojson }};
+document.addEventListener("DOMContentLoaded", () => renderResultCharts(window.chartStats));
+</script>
+{% endblock %}

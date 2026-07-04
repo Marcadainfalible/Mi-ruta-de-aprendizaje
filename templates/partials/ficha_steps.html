@@ -1,0 +1,13 @@
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">{{ ficha.area_nombre }} - {{ ficha.area_ciclo or "CNEB" }}</p>
+        <h1>{{ ficha.actividad }}</h1>
+        <p class="text-muted mb-0">{{ ficha.institucion }} - {{ ficha.fecha }} - Aula/Edad: {{ ficha.aula_edad }} - {{ ficha.competencia_nombre }}</p>
+    </div>
+    <div class="btn-group">
+        <a class="btn btn-outline-secondary" href="{{ url_for('main.estudiantes', ficha_id=ficha.id) }}">Estudiantes</a>
+        <a class="btn btn-outline-secondary" href="{{ url_for('main.criterios', ficha_id=ficha.id) }}">Criterios</a>
+        <a class="btn btn-outline-secondary" href="{{ url_for('main.evaluar', ficha_id=ficha.id) }}">Evaluar</a>
+        <a class="btn btn-outline-success" href="{{ url_for('main.resultados', ficha_id=ficha.id) }}">Resultados</a>
+    </div>
+</div>

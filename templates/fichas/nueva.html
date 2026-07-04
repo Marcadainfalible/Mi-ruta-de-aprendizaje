@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Nueva ficha - Mi Ruta de Aprendizaje{% endblock %}
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Ficha de observacion</p>
+        <h1>Nueva ficha</h1>
+    </div>
+</div>
+
+<form method="post" class="form-surface">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Institucion educativa</label>
+            <input class="form-control" name="institucion" required>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Docente</label>
+            <input class="form-control" name="docente" value="{{ current_user.nombre }}" required>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Fecha</label>
+            <input class="form-control" type="date" name="fecha" required>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Aula o edad</label>
+            <input class="form-control" name="aula_edad" required>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Numero de grupo</label>
+            <input class="form-control" name="numero_grupo">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Numero de estudiantes</label>
+            <input class="form-control" type="number" min="0" name="numero_estudiantes" value="0">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Ciclo</label>
+            <select class="form-select js-ciclo-select" name="ciclo" required>
+                <option value="">Selecciona un ciclo</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="I y II">I y II</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Area curricular</label>
+            <select class="form-select js-area-select" name="area_id" required disabled>
+                <option value="">Selecciona primero un ciclo</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Competencia</label>
+            <select class="form-select js-competencia-select" name="competencia_id" required disabled>
+                <option value="">Selecciona primero un area</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Actividad o experiencia de aprendizaje</label>
+            <input class="form-control" name="actividad" required>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Nombre de los integrantes del grupo</label>
+            <textarea class="form-control" name="integrantes" rows="4" placeholder="Un nombre por linea o separados por comas"></textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <a class="btn btn-outline-secondary" href="{{ url_for('main.dashboard') }}">Cancelar</a>
+        <button class="btn btn-primary" type="submit">Guardar y continuar</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Criterios · Mi Ruta de Aprendizaje{% endblock %}
+{% block content %}
+{% include "partials/ficha_steps.html" %}
+<section class="section-block">
+    <div class="section-title">
+        <h2>Criterios de evaluación</h2>
+        <span class="badge text-bg-light">{{ ficha.competencia_nombre }} - {{ ficha.competencia_ciclo or ficha.area_ciclo }}</span>
+    </div>
+    <form method="post" class="row g-2 mb-4">
+        <input type="hidden" name="action" value="add">
+        <div class="col-md-4">
+            <select class="form-select" name="capacidad_id" required>
+                {% for capacidad in capacidades %}
+                <option value="{{ capacidad.id }}">{{ loop.index }}. {{ capacidad.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" name="descripcion" placeholder="¿Qué se espera que logre el niño o la niña?" required>
+        </div>
+        <div class="col-md-2 d-grid"><button class="btn btn-primary" type="submit">+ Agregar</button></div>
+    </form>
+
+    <form method="post">
+        <input type="hidden" name="action" value="update">
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead><tr><th>Capacidad</th><th>Criterio editable</th><th class="text-end">Acción</th></tr></thead>
+                <tbody>
+                {% for criterio in criterios %}
+                <tr>
+                    <td>
+                        <select class="form-select" name="capacidad_{{ criterio.id }}">
+                            {% for capacidad in capacidades %}
+                            <option value="{{ capacidad.id }}" {% if capacidad.id == criterio.capacidad_id %}selected{% endif %}>{{ loop.index }}. {{ capacidad.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><input class="form-control" name="criterio_{{ criterio.id }}" value="{{ criterio.descripcion }}"></td>
+                    <td class="text-end">
+                        <button class="btn btn-sm btn-outline-danger" form="delete-criterio-{{ criterio.id }}" type="submit">Eliminar</button>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn-outline-primary" type="submit">Guardar cambios</button>
+            <a class="btn btn-primary" href="{{ url_for('main.evaluar', ficha_id=ficha.id) }}">Continuar a evaluación</a>
+        </div>
+    </form>
+    {% for criterio in criterios %}
+    <form id="delete-criterio-{{ criterio.id }}" method="post">
+        <input type="hidden" name="action" value="delete">
+        <input type="hidden" name="criterio_id" value="{{ criterio.id }}">
+    </form>
+    {% endfor %}
+</section>
+{% endblock %}

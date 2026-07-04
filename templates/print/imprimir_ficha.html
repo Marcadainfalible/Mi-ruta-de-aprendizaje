@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Imprimir ficha - Mi Ruta de Aprendizaje{% endblock %}
+{% block main_class %}print-page ficha-print{% endblock %}
+{% block content %}
+<div class="print-toolbar no-print">
+    <a class="btn btn-outline-secondary" href="{{ url_for('main.resultados', ficha_id=ficha.id) }}">Volver</a>
+    <button class="btn btn-primary" onclick="window.print()">Imprimir</button>
+</div>
+
+<section class="print-sheet">
+    <header class="print-header">
+        <div class="print-box">
+            <p><strong>Institucion Educativa:</strong> {{ ficha.institucion }}</p>
+            <p><strong>Docente:</strong> {{ ficha.docente }}</p>
+        </div>
+        <div class="print-title">
+            <h1>Ficha de Observacion</h1>
+            <h2>Evaluacion Formativa - Educacion Inicial</h2>
+        </div>
+        <div class="print-box">
+            <p><strong>Fecha:</strong> {{ ficha.fecha }}</p>
+            <p><strong>Aula / Edad:</strong> {{ ficha.aula_edad }}</p>
+            <p><strong>Ciclo:</strong> {{ ficha.ciclo or ficha.area_ciclo }}</p>
+        </div>
+    </header>
+
+    <div class="print-meta">
+        <div><strong>Area curricular:</strong><br>{{ ficha.area_nombre }}<br><small>{{ ficha.area_tipo or "" }}</small></div>
+        <div><strong>Actividad / Experiencia de aprendizaje:</strong><br>{{ ficha.actividad }}</div>
+        <div><strong>N. de grupo:</strong><br>{{ ficha.numero_grupo or "-" }}</div>
+        <div><strong>N. de estudiantes:</strong><br>{{ print_data.total_estudiantes }}</div>
+        <div>
+            <strong>Nombre de los estudiantes:</strong>
+            {% if print_data.estudiantes %}
+            <ol class="print-student-list">
+                {% for estudiante in print_data.estudiantes %}
+                <li>{{ estudiante.nombre }}</li>
+                {% endfor %}
+            </ol>
+            {% else %}
+            <br>Sin estudiantes registrados
+            {% endif %}
+        </div>
+    </div>
+
+    <table class="print-eval-table">
+        <thead>
+            <tr>
+                <th>Competencia:<br><small>(CNEB)</small></th>
+                <th>Capacidad:<br><small>(CNEB)</small></th>
+                <th>Criterio de evaluacion:</th>
+                <th>N.</th>
+                <th class="level-ad">AD</th>
+                <th class="level-a">A</th>
+                <th class="level-b">B</th>
+                <th class="level-c">C</th>
+                <th>Evidencias / Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for criterio in print_data.criterios %}
+            {% set criterio_loop = loop %}
+            {% for row in criterio.student_rows %}
+            <tr>
+                {% if loop.first %}
+                <td rowspan="{{ criterio.rowspan }}" class="competencia-cell">{{ ficha.competencia_nombre }}<br><small>Ciclo {{ ficha.competencia_ciclo or ficha.ciclo or "" }}</small></td>
+                <td rowspan="{{ criterio.rowspan }}">{{ criterio.capacidad_nombre }}</td>
+                <td rowspan="{{ criterio.rowspan }}">{{ criterio.descripcion }}</td>
+                {% endif %}
+                <td class="text-center student-number">{{ row.numero }}</td>
+                {% for level in print_data.levels %}
+                <td class="text-center {% if row.nivel == level %}celda-{{ level|lower }}{% endif %}">
+                    {% if row.nivel == level %}✓{% endif %}
+                </td>
+                {% endfor %}
+                {% if criterio.general_evidence %}
+                    {% if loop.first %}
+                    <td rowspan="{{ criterio.rowspan }}" class="evidence-cell">{{ criterio.general_evidence }}</td>
+                    {% endif %}
+                {% else %}
+                <td class="evidence-cell">
+                    {% if row.evidencia %}
+                        {{ row.evidencia }}
+                    {% else %}
+                        <span class="muted-line"></span>
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <footer class="print-footer-grid">
+        <div class="print-note">
+            <h3>Observaciones Generales</h3>
+            <p>{{ ficha.observaciones_generales or "" }}</p>
+        </div>
+        <div class="print-note">
+            <h3>Acciones o Sugerencias Pedagogicas</h3>
+            <p>{{ ficha.acciones_pedagogicas or "" }}</p>
+        </div>
+        {% include "partials/legend.html" %}
+    </footer>
+</section>
+{% endblock %}

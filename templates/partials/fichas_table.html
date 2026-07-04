@@ -1,0 +1,41 @@
+<section class="section-block">
+    {% if fichas %}
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Institución</th>
+                    <th>Área</th>
+                    <th>Grupo</th>
+                    <th>Estudiantes</th>
+                    {% if current_user.is_admin %}<th>Usuario</th>{% endif %}
+                    <th class="text-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for ficha in fichas %}
+                <tr>
+                    <td>{{ ficha.fecha }}</td>
+                    <td>{{ ficha.institucion }}</td>
+                    <td>{{ ficha.area_nombre }}</td>
+                    <td>{{ ficha.numero_grupo or "-" }}</td>
+                    <td>{{ ficha.numero_estudiantes }}</td>
+                    {% if current_user.is_admin %}<td>{{ ficha.usuario_nombre }}</td>{% endif %}
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-outline-secondary" href="{{ url_for('main.estudiantes', ficha_id=ficha.id) }}">Estudiantes</a>
+                            <a class="btn btn-outline-secondary" href="{{ url_for('main.criterios', ficha_id=ficha.id) }}">Criterios</a>
+                            <a class="btn btn-outline-primary" href="{{ url_for('main.evaluar', ficha_id=ficha.id) }}">Evaluar</a>
+                            <a class="btn btn-outline-success" href="{{ url_for('main.resultados', ficha_id=ficha.id) }}">Resultados</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-muted mb-0">No hay fichas para mostrar.</p>
+    {% endif %}
+</section>

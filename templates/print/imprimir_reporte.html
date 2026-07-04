@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Imprimir reporte - Mi Ruta de Aprendizaje{% endblock %}
+{% block main_class %}print-page reporte-print{% endblock %}
+{% block content %}
+<div class="print-toolbar no-print">
+    <a class="btn btn-outline-secondary" href="{{ url_for('main.resultados', ficha_id=ficha.id) }}">Volver</a>
+    <button class="btn btn-primary" onclick="window.print()">Imprimir</button>
+</div>
+
+<section class="print-sheet report-sheet">
+    <header class="print-header report-header">
+        <div class="print-box">
+            <p><strong>Institucion Educativa:</strong> {{ ficha.institucion }}</p>
+            <p><strong>Docente:</strong> {{ ficha.docente }}</p>
+            <p><strong>Area curricular:</strong> {{ ficha.area_nombre }} - Ciclo {{ ficha.ciclo or ficha.area_ciclo or "" }}</p>
+            <p><strong>Competencia:</strong> {{ ficha.competencia_nombre }}</p>
+            <p><strong>Tipo:</strong> {{ ficha.area_tipo or "area curricular" }}</p>
+        </div>
+        <div class="print-title">
+            <h1>Grafico Estadistico</h1>
+            <h2>Resultados de la Ficha de Observacion</h2>
+            <h3>Evaluacion Formativa - Educacion Inicial</h3>
+        </div>
+        <div class="print-box">
+            <p><strong>Fecha:</strong> {{ ficha.fecha }}</p>
+            <p><strong>Aula / Edad:</strong> {{ ficha.aula_edad }}</p>
+            <p><strong>N. de grupo:</strong> {{ ficha.numero_grupo or "-" }}</p>
+            <p><strong>N. de estudiantes:</strong> {{ stats.total_evaluados }}</p>
+        </div>
+    </header>
+
+    <div class="report-top-grid">
+        <div class="report-table-block">
+            <h3>Resumen General de Niveles de Logro</h3>
+            {% include "partials/resultados_table.html" %}
+        </div>
+        <div class="report-chart-block">
+            <h3>Grafico de Barras - Distribucion por Nivel de Logro</h3>
+            <canvas id="stackedChart"></canvas>
+        </div>
+    </div>
+
+    <div class="report-chart-grid">
+        <div>
+            <h3>Grafico de Columnas</h3>
+            <canvas id="barChart"></canvas>
+        </div>
+        <div>
+            <h3>Grafico Circular</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="line-chart-panel">
+            <h3>Grafico de Lineas</h3>
+            <div class="line-chart-box"><canvas id="lineChart"></canvas></div>
+            <div id="lineCriteriaLegend" class="criteria-legend"></div>
+        </div>
+    </div>
+
+    <footer class="report-footer-grid">
+        <div class="print-note">
+            <h3>Analisis e Interpretacion</h3>
+            <p>{{ ficha.analisis_interpretacion or "" }}</p>
+        </div>
+        <div class="print-note">
+            <h3>Acciones o Sugerencias Pedagogicas</h3>
+            <p>{{ ficha.acciones_pedagogicas or "" }}</p>
+        </div>
+        {% include "partials/legend.html" %}
+    </footer>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+window.chartStats = {{ stats|tojson }};
+document.addEventListener("DOMContentLoaded", () => renderResultCharts(window.chartStats, true));
+</script>
+{% endblock %}

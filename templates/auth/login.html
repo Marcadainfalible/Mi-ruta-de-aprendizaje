@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Login · Mi Ruta de Aprendizaje{% endblock %}
+{% block main_class %}container login-shell{% endblock %}
+{% block content %}
+<div class="login-panel">
+    <div>
+        <p class="text-uppercase small text-muted mb-1">Educación Inicial</p>
+        <h1 class="h3 fw-bold mb-2">Mi Ruta de Aprendizaje</h1>
+        <p class="text-muted mb-4">Ingreso seguro para docentes y administradores.</p>
+    </div>
+    <form method="post" class="vstack gap-3">
+        <div>
+            <label class="form-label">Correo</label>
+            <input class="form-control" type="email" name="email" required autofocus>
+        </div>
+        <div>
+            <label class="form-label">Contraseña</label>
+            <input class="form-control" type="password" name="password" required>
+        </div>
+        <button class="btn btn-primary w-100" type="submit">Ingresar</button>
+    </form>
+    <div class="demo-access">
+        <strong>Demo:</strong> docente@miruta.local / docente123<br>
+        <strong>Admin:</strong> admin@miruta.local / admin123
+    </div>
+</div>
+{% endblock %}

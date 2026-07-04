@@ -1,0 +1,252 @@
+{
+  "fuente": "Programa Curricular de Educación Inicial - MINEDU",
+  "nivel": "Educación Inicial",
+  "version": "2016 / edición 2017",
+  "areas": [
+    {
+      "nombre": "Personal Social",
+      "nivel": "Educación Inicial",
+      "ciclo": "I y II",
+      "tipo": "area_curricular",
+      "orden": 1,
+      "competencias": [
+        {
+          "nombre": "Construye su identidad",
+          "ciclo": "I y II",
+          "orden": 1,
+          "capacidades": [
+            "Se valora a sí mismo",
+            "Autorregula sus emociones"
+          ]
+        },
+        {
+          "nombre": "Convive y participa democráticamente en la búsqueda del bien común",
+          "ciclo": "I y II",
+          "orden": 2,
+          "capacidades": [
+            "Interactúa con todas las personas",
+            "Construye normas, y asume acuerdos y leyes",
+            "Participa en acciones que promueven el bienestar común"
+          ]
+        },
+        {
+          "nombre": "Construye su identidad, como persona humana, amada por Dios, digna, libre y trascendente, comprendiendo la doctrina de su propia religión, abierto al diálogo con las que le son cercanas",
+          "ciclo": "II",
+          "orden": 3,
+          "capacidades": [
+            "Conoce a Dios y asume su identidad religiosa y espiritual como persona digna, libre y trascendente",
+            "Cultiva y valora las manifestaciones religiosas de su entorno argumentando su fe de manera comprensible y respetuosa"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Psicomotriz",
+      "nivel": "Educación Inicial",
+      "ciclo": "I y II",
+      "tipo": "area_curricular",
+      "orden": 2,
+      "competencias": [
+        {
+          "nombre": "Se desenvuelve de manera autónoma a través de su motricidad",
+          "ciclo": "I y II",
+          "orden": 1,
+          "capacidades": [
+            "Comprende su cuerpo",
+            "Se expresa corporalmente"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Comunicación",
+      "nivel": "Educación Inicial",
+      "ciclo": "I y II",
+      "tipo": "area_curricular",
+      "orden": 3,
+      "competencias": [
+        {
+          "nombre": "Se comunica oralmente en su lengua materna",
+          "ciclo": "I y II",
+          "orden": 1,
+          "capacidades": [
+            "Obtiene información del texto oral",
+            "Infiere e interpreta información del texto oral",
+            "Adecúa, organiza y desarrolla el texto oral de forma coherente y cohesionada",
+            "Utiliza recursos no verbales y paraverbales de forma estratégica",
+            "Interactúa estratégicamente con distintos interlocutores",
+            "Reflexiona y evalúa la forma, el contenido y el contexto del texto oral"
+          ]
+        },
+        {
+          "nombre": "Lee diversos tipos de textos escritos en su lengua materna",
+          "ciclo": "II",
+          "orden": 2,
+          "capacidades": [
+            "Obtiene información del texto escrito",
+            "Infiere e interpreta información del texto escrito",
+            "Reflexiona y evalúa la forma, el contenido y contexto del texto escrito"
+          ]
+        },
+        {
+          "nombre": "Escribe diversos tipos de textos en su lengua materna",
+          "ciclo": "II",
+          "orden": 3,
+          "capacidades": [
+            "Adecúa el texto a la situación comunicativa",
+            "Organiza y desarrolla las ideas de forma coherente y cohesionada",
+            "Reflexiona y evalúa la forma, el contenido y contexto del texto escrito"
+          ]
+        },
+        {
+          "nombre": "Crea proyectos desde los lenguajes artísticos",
+          "ciclo": "II",
+          "orden": 4,
+          "capacidades": [
+            "Explora y experimenta los lenguajes del arte",
+            "Aplica procesos creativos",
+            "Socializa sus procesos y proyectos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Castellano como Segunda Lengua",
+      "nivel": "Educación Inicial",
+      "ciclo": "II",
+      "tipo": "area_curricular",
+      "orden": 4,
+      "competencias": [
+        {
+          "nombre": "Se comunica oralmente en castellano como segunda lengua",
+          "ciclo": "II",
+          "orden": 1,
+          "capacidades": [
+            "Obtiene información del texto oral",
+            "Infiere e interpreta información del texto oral",
+            "Adecúa, organiza y desarrolla el texto de forma coherente y cohesionada",
+            "Utiliza recursos no verbales y paraverbales de forma estratégica",
+            "Interactúa estratégicamente con distintos interlocutores",
+            "Reflexiona y evalúa la forma, el contenido y contexto del texto oral"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Descubrimiento del Mundo",
+      "nivel": "Educación Inicial",
+      "ciclo": "I",
+      "tipo": "area_curricular",
+      "orden": 5,
+      "competencias": [
+        {
+          "nombre": "Indaga mediante métodos científicos para construir sus conocimientos",
+          "ciclo": "I",
+          "orden": 1,
+          "capacidades": [
+            "Genera y registra datos o información"
+          ]
+        },
+        {
+          "nombre": "Resuelve problemas de cantidad",
+          "ciclo": "I",
+          "orden": 2,
+          "capacidades": [
+            "Traduce cantidades a expresiones numéricas",
+            "Comunica su comprensión sobre los números y las operaciones",
+            "Usa estrategias y procedimientos de estimación y cálculo"
+          ]
+        },
+        {
+          "nombre": "Resuelve problemas de forma, movimiento y localización",
+          "ciclo": "I",
+          "orden": 3,
+          "capacidades": [
+            "Modela objetos con formas geométricas y sus transformaciones",
+            "Comunica su comprensión sobre las formas y relaciones geométricas",
+            "Usa estrategias y procedimientos para orientarse en el espacio"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Matemática",
+      "nivel": "Educación Inicial",
+      "ciclo": "II",
+      "tipo": "area_curricular",
+      "orden": 6,
+      "competencias": [
+        {
+          "nombre": "Resuelve problemas de cantidad",
+          "ciclo": "II",
+          "orden": 1,
+          "capacidades": [
+            "Traduce cantidades a expresiones numéricas",
+            "Comunica su comprensión sobre los números y las operaciones",
+            "Usa estrategias y procedimientos de estimación y cálculo"
+          ]
+        },
+        {
+          "nombre": "Resuelve problemas de forma, movimiento y localización",
+          "ciclo": "II",
+          "orden": 2,
+          "capacidades": [
+            "Modela objetos con formas geométricas y sus transformaciones",
+            "Comunica su comprensión sobre las formas y relaciones geométricas",
+            "Usa estrategias y procedimientos para orientarse en el espacio"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ciencia y Tecnología",
+      "nivel": "Educación Inicial",
+      "ciclo": "II",
+      "tipo": "area_curricular",
+      "orden": 7,
+      "competencias": [
+        {
+          "nombre": "Indaga mediante métodos científicos para construir sus conocimientos",
+          "ciclo": "II",
+          "orden": 1,
+          "capacidades": [
+            "Problematiza situaciones para hacer indagación",
+            "Diseña estrategias para hacer indagación",
+            "Genera y registra datos o información",
+            "Analiza datos e información",
+            "Evalúa y comunica el proceso y resultado de su indagación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Competencias Transversales",
+      "nivel": "Educación Inicial",
+      "ciclo": "II",
+      "tipo": "competencia_transversal",
+      "orden": 8,
+      "competencias": [
+        {
+          "nombre": "Se desenvuelve en los entornos virtuales generados por las TIC",
+          "ciclo": "II",
+          "orden": 1,
+          "capacidades": [
+            "Personaliza entornos virtuales",
+            "Gestiona información del entorno virtual",
+            "Crea objetos virtuales en diversos formatos"
+          ]
+        },
+        {
+          "nombre": "Gestiona su aprendizaje de manera autónoma",
+          "ciclo": "II",
+          "orden": 2,
+          "capacidades": [
+            "Define metas de aprendizaje",
+            "Organiza acciones estratégicas para alcanzar sus metas de aprendizaje",
+            "Monitorea y ajusta su desempeño durante el proceso de aprendizaje"
+          ]
+        }
+      ]
+    }
+  ]
+}

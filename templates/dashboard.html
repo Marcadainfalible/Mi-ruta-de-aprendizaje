@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · Mi Ruta de Aprendizaje{% endblock %}
+{% block content %}
+<div class="page-heading no-print">
+    <div>
+        <p class="eyebrow">Panel principal</p>
+        <h1>Bienvenida, {{ current_user.nombre }}</h1>
+    </div>
+    <a class="btn btn-primary" href="{{ url_for('main.nueva_ficha') }}">+ Crear nueva ficha</a>
+</div>
+
+<div class="dashboard-grid no-print">
+    <a class="action-card" href="{{ url_for('main.nueva_ficha') }}">
+        <span class="action-icon">+</span>
+        <strong>Crear nueva ficha</strong>
+        <small>Datos generales, área, competencia y grupo.</small>
+    </a>
+    <a class="action-card" href="{{ url_for('main.fichas') }}">
+        <span class="action-icon">#</span>
+        <strong>Ver fichas registradas</strong>
+        <small>{{ total_fichas }} ficha(s) disponibles.</small>
+    </a>
+    <a class="action-card" href="{{ url_for('main.reportes') }}">
+        <span class="action-icon">%</span>
+        <strong>Ver reportes</strong>
+        <small>Resultados estadísticos e imprimibles.</small>
+    </a>
+    <a class="action-card" href="{{ url_for('auth.logout') }}">
+        <span class="action-icon">x</span>
+        <strong>Cerrar sesión</strong>
+        <small>Salir del sistema de forma segura.</small>
+    </a>
+</div>
+
+<section class="section-block">
+    <div class="section-title">
+        <h2>Fichas recientes</h2>
+        <a href="{{ url_for('main.fichas') }}">Ver todas</a>
+    </div>
+    {% if fichas %}
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Institución</th>
+                    <th>Área</th>
+                    <th>Docente</th>
+                    <th class="text-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for ficha in fichas %}
+                <tr>
+                    <td>{{ ficha.fecha }}</td>
+                    <td>{{ ficha.institucion }}</td>
+                    <td>{{ ficha.area_nombre }}</td>
+                    <td>{{ ficha.docente }}</td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('main.evaluar', ficha_id=ficha.id) }}">Evaluar</a>
+                        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('main.resultados', ficha_id=ficha.id) }}">Resultados</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-muted mb-0">Aún no hay fichas registradas.</p>
+    {% endif %}
+</section>
+{% endblock %}
