@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mi Ruta de Aprendizaje
 
 Aplicativo web Flask para registrar fichas de observacion de evaluacion formativa de Educacion Inicial, evaluar estudiantes, calcular resultados y generar formatos imprimibles.
@@ -31,3 +32,6 @@ http://127.0.0.1:5000
 - Matriz de evaluacion AD, A, B y C con evidencias.
 - Resultados estadisticos y graficos Chart.js.
 - Formatos imprimibles A4 horizontal para ficha y reporte.
+=======
+# Mi-ruta-de-aprendizaje
+>>>>>>> a76fb1a06ea60a11c1ad1b9e18af7337711c610b
